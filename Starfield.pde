@@ -1,41 +1,83 @@
-//your code here
+NormalParticle [] poop;
 void setup()
 {
   size (800, 800);
+  poop = new NormalParticle [400];
+  for (int i = 0; i<poop.length; i++)
+  {
+    poop[i] = new NormalParticle();
+  }
 }
 void draw()
 {
-  //your code here
+  background (0);
+  for (int i = 0; i<poop.length; i++)
+  {
+    poop[i].show();
+    poop[i].move();
+  }
 }
-class NormalParticle
+class NormalParticle implements Particle
 {
- double x, y, speed, angle;
- NormalParticle ()
- {
-   x = 0;
-   y = 0;
-   speed =;
-   angle =;   
- }
- void move ()
- {
-   x = x + 
- }
- void show()
- {
- }
- 
+  double x, y, speed, angle;
+  int pColor1, pColor2, pColor3;
+  NormalParticle ()
+  {
+    x = 400;
+    y = 400;
+    pColor1 = (int) (Math.random()*255)+1;
+    pColor2 = (int) (Math.random()*255)+1;
+    pColor3 = (int) (Math.random()*255)+1;
+    speed = Math.random()*11;
+    angle =(Math.random()*2)*Math.PI;
+  }
+  public void move ()
+  {
+    x = x + Math.cos(angle)*speed;
+    y = y + Math.sin(angle)*speed;
+  }
+  public void show()
+  {
+    noStroke();
+    fill (pColor1, pColor2, pColor3);
+    ellipse ((float)(x), (float)(y), 10, 10);
+  }
 }
 interface Particle
 {
   public void show ();
   public void move ();
 }
-class OddballParticle //uses an interface
+class OddballParticle
 {
-  //your code here
+  int opColor, size, x, y ;
+  OddballParticle()
+  {
+    opColor = 0;
+    size = 20;
+    x = 400;
+    y = 400;
+  }
+  public void move()
+  {
+  }
+  public void show()
+  {
+    fill (opColor);
+    ellipse ( x, y, size, size);
+  }
 }
 class JumboParticle //uses inheritance
 {
   //your code here
+}
+void mousePressed ()
+{
+  for (int i = 0; i < poop.length; i++)
+  {
+    poop [i]. x = mouseX;
+    poop [i]. y = mouseY;
+    poop [i]. speed = Math.random()*11;
+    poop [i]. angle =(Math.random()*2)*Math.PI;
+  }
 }
