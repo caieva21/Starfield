@@ -9,7 +9,7 @@ void setup()
 	{
 	if(i%200 == 0)
 		bob[i]= new JumboParticle();
-	else if(i%500 ==0)
+	else if(i%250 ==0)
 		bob[i] = new OddballParticle();
 	else
 		bob[i] = new NormalParticle();
@@ -44,7 +44,7 @@ class NormalParticle implements Particle
 		y = height/2;
 		speed = (int)(Math.random()*6);
 		angle= Math.random()*2*PI;
-		size = 5;
+		size = 2;
 		forward = true;
 		checker = 0;
 	}
@@ -100,13 +100,13 @@ class OddballParticle implements Particle //uses an interface
  	public void move()
  	{
  		speed = Math.random()*6;
- 		x += cos((float)(((Math.random()*2)-1)*speed*angle));
- 		y += sin((float)(((Math.random()*2)-1)*speed*angle));
+ 		x += cos((float)(((Math.random()*8)-4)*speed*angle));
+ 		y += sin((float)(((Math.random()*8)-4)*speed*angle));
  	}
 
  	public void show()
  	{
- 		fill(((int)(Math.random()*256)),((int)(Math.random()*256)),((int)(Math.random()*256)));
+ 		fill(255,255,255);
  		noStroke();
  		ellipse((float)x,(float)y,15,15);
  	}
