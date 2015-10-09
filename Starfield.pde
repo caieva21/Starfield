@@ -40,7 +40,7 @@ class NormalParticle implements Particle
   {
     noStroke();
     fill (pColor1, pColor2, pColor3);
-    ellipse ((float)(x), (float)(y), 10, 10);
+    ellipse ((float)(x), (float)(y), 5, 5);
   }
 }
 interface Particle
