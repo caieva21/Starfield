@@ -1,21 +1,17 @@
-NormalParticle [] poop;
+Particle [] poop = new Particle [400];
+
 void setup()
 {
   size (800, 800);
-  poop = new NormalParticle [400];
   for (int i = 0; i<poop.length; i++)
   {
-Particle [] poop;
-void setup()
-{
-  size (800, 800);
-  poop = new Particle [400];
-  for (int i = 1; i<poop.length; i++)
-  {
-    poop[i] = new NormalParticle();
+    if (i < 1)
+    poop [i] = new OddballParticle();
+    else 
+    poop [i] = new NormalParticle();
   }
-  poop[0] = new OddballParticle();
 }
+
 void draw()
 {
   background (0);
@@ -61,7 +57,7 @@ class OddballParticle implements Particle
   int opColor, size, x, y, angle, speed ;
   OddballParticle()
   {
-    opColor = 0;
+    opColor = 255;
     size = 20;
     x = 400;
     y = 400;
