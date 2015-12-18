@@ -6,9 +6,11 @@ void setup()
   for (int i = 0; i<poop.length; i++)
   {
     if (i < 1)
-    poop [i] = new OddballParticle();
-    else 
-    poop [i] = new NormalParticle();
+      poop [i] = new OddballParticle();
+     else if (i<2)
+       poop[i] = new JumboParticle();
+      else 
+      poop [i] = new NormalParticle();
   }
 }
 
@@ -23,10 +25,11 @@ void draw()
 }
 class NormalParticle implements Particle
 {
-  double x, y, speed, angle;
+  double x, y, speed, angle, size;
   int pColor1, pColor2, pColor3;
   NormalParticle ()
   {
+    size = 5;
     x = 400;
     y = 400;
     pColor1 = (int) (Math.random()*255)+1;
@@ -44,7 +47,7 @@ class NormalParticle implements Particle
   {
     noStroke();
     fill (pColor1, pColor2, pColor3);
-    ellipse ((float)(x), (float)(y), 5, 5);
+    ellipse ((float)(x), (float)(y), (float)(size), (float)(size));
   }
 }
 interface Particle
@@ -61,13 +64,15 @@ class OddballParticle implements Particle
     size = 20;
     x = 400;
     y = 400;
-    speed = (int)(Math.random()*11);
+    speed = (int)(Math.random()*2)+2;
     angle =(int)((Math.random()*2)*Math.PI);
   }
   public void move()
   {
-    x = x + (int)(Math.cos(angle)*speed);
-    y = y + (int)(Math.sin(angle)*speed);
+    x = x + (int) (Math.random()*3)-1;
+    y= y + (int)(Math.random()*3)-1;
+    //x = x + (int)(Math.cos(angle)*speed);
+    //y = y + (int)(Math.sin(angle)*speed);
   }
   public void show()
   {
@@ -75,17 +80,20 @@ class OddballParticle implements Particle
     ellipse ( x, y, size, size);
   }
 }
-class JumboParticle //uses inheritance
-{
-  //your code here
+class JumboParticle extends NormalParticle//uses inheritance
+{ 
+   JumboParticle()
+  {
+    size = 50;
+  }
 }
 /*void mousePressed ()
-{
-  for (int i = 1; i < poop.length; i++)
-  {
-    (NormalParticle)(poop [i]. x = mouseX;
-    poop [i]. y = mouseY;
-    poop [i]. speed = Math.random()*11;
-    poop [i]. angle =(Math.random()*2)*Math.PI;
-  }
-}*/
+ {
+ for (int i = 1; i < poop.length; i++)
+ {
+ (NormalParticle)(poop [i]. x = mouseX;
+ poop [i]. y = mouseY;
+ poop [i]. speed = Math.random()*11;
+ poop [i]. angle =(Math.random()*2)*Math.PI;
+ }
+ }*/
